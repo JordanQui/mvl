@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+     <head>
+          <meta charset="UTF-8" />
+          <meta
+               name="viewport"
+               content="width=device-width, initial-scale=1.0"
+          />
+          <title>Hydra Patch</title>
+          <script src="hydra.js"></script>
+          <style>
+               body {
+                    margin: 0;
+                    overflow: hidden;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100vh;
+                    background: black;
+               }
+               canvas {
+                    width: 100%;
+                    height: 100%;
+               }
+          </style>
+     </head>
+     <body>
+          <script>
+               const hydra = new Hydra();
+
+               a.setBins(8);
+               setResolution(1920, 1080);
+               a.setSmooth(0.9)
+
+               osc(
+                    () => 2 - a.fft[0] + -a.fft[7] * 15,
+                    0,
+                    () => a.fft[0] * 350
+               )
+                    .scale(0.1)
+                    .modulate(o0, () => a.fft[7] * 7 + 0.36)
+                    .blend(o0, 0.55)
+                    .out(o0);
+          </script>
+     </body>
+</html>
