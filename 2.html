@@ -34,10 +34,12 @@
                a.setSmooth(0.9)
 
                noise(
-                    () => 1 + a.fft[0] * 15,
-                    0
+                    () => 2 + a.fft[0] * 15,
+                    0,
+                    10
                )
-                    .scrollX(() => -a.fft[2] * 100 + 1000)
+                    .scrollX(() => -a.fft[2] * 10 + 1)
+                    //.scrollX(100)
                     .scale(
                          () =>
                               1 +
