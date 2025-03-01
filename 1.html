@@ -42,6 +42,10 @@
                     .modulate(o0, () => a.fft[7] * 7 + 0.36)
                     .blend(o0, 0.55)
                     .out(o0);
+
+               setTimeout(() => {
+                    location.reload();
+               }, 60 * 60 * 1000); 
           </script>
      </body>
 </html>
