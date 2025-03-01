@@ -31,23 +31,21 @@
 
                a.setBins(8);
                setResolution(1920, 1080);
-               a.setSmooth(0.1)
+               a.setSmooth(0.985)
                
-               speed=0.001;
+               speed=0.000001;
 
-               noise(
-                    () => 20,
-                    () => a.fft[0] * 10 + 1,
-               )
-					.scale(() => (a.fft[0] * 1000) + (a.fft[7] * 100) + 1)
-					.blend(osc(10,0,() => a.fft[0] * 1000))
-					.contrast(5)
-                    .modulateRotate(o0, () => 0.1 + a.fft[1] * 5)
-                    .modulate(o0, () => 0.1 + (a.fft[1] * 0.5))
-                    .blend(o0)
-                    //.layer(src(o1).scrollX(100))
-                    //.add(o0,0.5)
-                    //.rotate(2)
+
+               osc(() => 200 - a.fft[0] * 1000, 0)
+                    .scrollX(() => -a.fft[1] * 20)
+                    .scale(() => 1 + (a.fft[0] * 10) - (a.fft[7] * 4))
+                    .contrast(() => 5 - (a.fft[0] * 10))
+                    .add(osc(() => 0.1 + a.fft[7] * 500, 0, ()=> smoothedValues.valueMid1 * 10).rotate(0.1))
+                    .modulate(o0, () => 0.1 + a.fft[0] * 2.5 + (a.fft[7] * 100))
+                    .modulateRotate(osc(() => 1 + a.fft[0] * 2,0.1,0.1))
+                    .blend(o0, 0.5)
+                    .kaleid(7)
+                    .scale(10)
                     .out(o0);
                      
                     render(o0);
