@@ -6,7 +6,7 @@
                name="viewport"
                content="width=device-width, initial-scale=1.0"
           />
-          <title>Model 1</title>
+          <title>Model 3</title>
           <script src="hydra.js"></script>
           <style>
                body {
@@ -32,22 +32,26 @@
                a.setBins(8);
                setResolution(1920, 1080);
                a.setSmooth(0.1)
+               
+               speed=0.0001;
 
-               osc(
-                    () => 2 - a.fft[0] + a.fft[7] * 15,
-                    0,
-                    () => a.fft[0] * 350
-               )
-                    .scale(() => 0.1 - (a.fft[0] * 10) + (a.fft[7] * 2))
-                    .modulate(o0, () => a.fft[7] * 7 + 0.36)
-                    //.modulate(o0, () => a.fft[0] * 7 + 0.36)
-                    .blend(o0, 0.55)
-                    //.modulate(o0, () => (a.fft[0] * 5) + (a.fft[7] * 5))
+               osc(4,() => (a.fft[0] * 20) + (a.fft[7] * 30) + 0.1, 0.1)
+                    .mult(osc(1,10,() => a.fft[0] * 20), () => a.fft[0] * 50)
+                    //.rotate(-0.25, 0.2)
+                    .scale(() => 1 + a.fft[0] * 1 - a.fft[7] * 5)
+                    .rotate(1.55)
+                    //.repeat(4)
+                    //.modulateRotate(o0, 0.1)
+                    //.invert(1)
+                    //.rotate(1, 0.2)
+                    //.contrast(2)
+					.modulate(o0, () => 0.05 +  a.fft[0] * 10)
+					.scale(() => a.fft[7] * -1 + 1)
                     .out(o0);
 
-               setTimeout(() => {
-                    location.reload();
-               }, 60 * 60 * 1000); 
+                    setTimeout(() => {
+                         location.reload();
+                    }, 60 * 60 * 1000); 
           </script>
      </body>
 </html>
